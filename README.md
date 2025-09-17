@@ -64,6 +64,8 @@ nwdiag {
 
     - Name: `vboxnet1` (when different, for example on Windows: "VirtualBox Host-Only Ethernet Adapter #2", change this in the [`Vagrantfile`](./Vagrantfile))
     - IP range: 192.168.62.0/24
+  
+    ⚠️ Linux users, read https://www.virtualbox.org/manual/ch06.html#network_hostonly to allow this IP range!
 
 2. Make sure your vagrant boxes are up to date: `vagrant box update`
 
