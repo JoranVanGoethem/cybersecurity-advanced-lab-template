@@ -11,3 +11,4 @@
 
 # VirtualBox appliances
 *.ova
+Vagrantfile
