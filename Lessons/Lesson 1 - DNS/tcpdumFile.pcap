@@ -1,0 +1,52 @@
+16:52:45.663370 IP 172.30.255.254.50710 > 172.30.0.123.22: Flags [P.], seq 338335371:338335419, ack 2407192093, win 515, options [nop,nop,TS val 3807668406 ecr 559487177], length 48
+16:52:45.663659 IP 172.30.0.123.22 > 172.30.255.254.50710: Flags [P.], seq 1:65, ack 48, win 2003, options [nop,nop,TS val 559579390 ecr 3807668406], length 64
+16:52:45.663666 IP 172.30.255.254.50710 > 172.30.0.123.22: Flags [.], ack 65, win 515, options [nop,nop,TS val 3807668406 ecr 559579390], length 0
+16:52:45.997241 IP 172.30.255.254.50710 > 172.30.0.123.22: Flags [P.], seq 48:96, ack 65, win 515, options [nop,nop,TS val 3807668740 ecr 559579390], length 48
+16:52:45.997950 IP 172.30.0.123 > 172.30.255.254: ICMP echo request, id 9, seq 0, length 64
+16:52:45.997963 IP 172.30.255.254 > 172.30.0.123: ICMP echo reply, id 9, seq 0, length 64
+16:52:45.998013 IP 172.30.0.123.22 > 172.30.255.254.50710: Flags [P.], seq 65:129, ack 96, win 2003, options [nop,nop,TS val 559579725 ecr 3807668740], length 64
+16:52:45.998020 IP 172.30.255.254.50710 > 172.30.0.123.22: Flags [.], ack 129, win 515, options [nop,nop,TS val 3807668740 ecr 559579725], length 0
+16:52:45.998234 IP 172.30.0.123.22 > 172.30.255.254.50710: Flags [P.], seq 129:193, ack 96, win 2003, options [nop,nop,TS val 559579725 ecr 3807668740], length 64
+16:52:45.998241 IP 172.30.255.254.50710 > 172.30.0.123.22: Flags [.], ack 193, win 515, options [nop,nop,TS val 3807668741 ecr 559579725], length 0
+16:52:46.067500 IP 172.30.255.254.50726 > 172.30.0.123.22: Flags [P.], seq 3847700069:3847700137, ack 2006116167, win 558, options [nop,nop,TS val 3807668810 ecr 559189458], length 68
+16:52:46.067950 IP 172.30.0.123.22 > 172.30.255.254.50726: Flags [P.], seq 1:101, ack 68, win 2003, options [nop,nop,TS val 559579795 ecr 3807668810], length 100
+16:52:46.067980 IP 172.30.255.254.50726 > 172.30.0.123.22: Flags [.], ack 101, win 558, options [nop,nop,TS val 3807668810 ecr 559579795], length 0
+16:52:46.998376 IP 172.30.0.123 > 172.30.255.254: ICMP echo request, id 9, seq 1, length 64
+16:52:46.998408 IP 172.30.255.254 > 172.30.0.123: ICMP echo reply, id 9, seq 1, length 64
+16:52:46.998741 IP 172.30.0.123.22 > 172.30.255.254.50710: Flags [P.], seq 193:257, ack 96, win 2003, options [nop,nop,TS val 559580726 ecr 3807668741], length 64
+16:52:46.998757 IP 172.30.255.254.50710 > 172.30.0.123.22: Flags [.], ack 257, win 515, options [nop,nop,TS val 3807669741 ecr 559580726], length 0
+16:52:47.867541 IP 172.30.0.123.40814 > 45.87.78.35.123: NTPv4, Client, length 48
+16:52:47.887546 IP 45.87.78.35.123 > 172.30.0.123.40814: NTPv4, Server, length 48
+16:52:47.998566 IP 172.30.0.123 > 172.30.255.254: ICMP echo request, id 9, seq 2, length 64
+16:52:47.998597 IP 172.30.255.254 > 172.30.0.123: ICMP echo reply, id 9, seq 2, length 64
+16:52:47.998926 IP 172.30.0.123.22 > 172.30.255.254.50710: Flags [P.], seq 257:321, ack 96, win 2003, options [nop,nop,TS val 559581726 ecr 3807669741], length 64
+16:52:47.998940 IP 172.30.255.254.50710 > 172.30.0.123.22: Flags [.], ack 321, win 515, options [nop,nop,TS val 3807670741 ecr 559581726], length 0
+16:52:48.889171 IP 172.30.0.123.53366 > 162.159.200.123.123: NTPv4, Client, length 48
+16:52:48.960921 IP 162.159.200.123.123 > 172.30.0.123.53366: NTPv4, Server, length 48
+16:52:48.998704 IP 172.30.0.123 > 172.30.255.254: ICMP echo request, id 9, seq 3, length 64
+16:52:48.998720 IP 172.30.255.254 > 172.30.0.123: ICMP echo reply, id 9, seq 3, length 64
+16:52:48.999110 IP 172.30.0.123.22 > 172.30.255.254.50710: Flags [P.], seq 321:385, ack 96, win 2003, options [nop,nop,TS val 559582727 ecr 3807670741], length 64
+16:52:48.999131 IP 172.30.255.254.50710 > 172.30.0.123.22: Flags [.], ack 385, win 515, options [nop,nop,TS val 3807671742 ecr 559582727], length 0
+16:52:49.998437 IP 172.30.0.123 > 172.30.255.254: ICMP echo request, id 9, seq 4, length 64
+16:52:49.998453 IP 172.30.255.254 > 172.30.0.123: ICMP echo reply, id 9, seq 4, length 64
+16:52:49.998735 IP 172.30.0.123.22 > 172.30.255.254.50710: Flags [P.], seq 385:449, ack 96, win 2003, options [nop,nop,TS val 559583727 ecr 3807671742], length 64
+16:52:49.998751 IP 172.30.255.254.50710 > 172.30.0.123.22: Flags [.], ack 449, win 515, options [nop,nop,TS val 3807672741 ecr 559583727], length 0
+16:52:50.998076 IP 172.30.0.123 > 172.30.255.254: ICMP echo request, id 9, seq 5, length 64
+16:52:50.998093 IP 172.30.255.254 > 172.30.0.123: ICMP echo reply, id 9, seq 5, length 64
+16:52:50.998630 IP 172.30.0.123.22 > 172.30.255.254.50710: Flags [P.], seq 449:513, ack 96, win 2003, options [nop,nop,TS val 559584728 ecr 3807672741], length 64
+16:52:50.998646 IP 172.30.255.254.50710 > 172.30.0.123.22: Flags [.], ack 513, win 515, options [nop,nop,TS val 3807673741 ecr 559584728], length 0
+16:52:51.998074 IP 172.30.0.123 > 172.30.255.254: ICMP echo request, id 9, seq 6, length 64
+16:52:51.998108 IP 172.30.255.254 > 172.30.0.123: ICMP echo reply, id 9, seq 6, length 64
+16:52:51.998460 IP 172.30.0.123.22 > 172.30.255.254.50710: Flags [P.], seq 513:577, ack 96, win 2003, options [nop,nop,TS val 559585728 ecr 3807673741], length 64
+16:52:51.998483 IP 172.30.255.254.50710 > 172.30.0.123.22: Flags [.], ack 577, win 515, options [nop,nop,TS val 3807674741 ecr 559585728], length 0
+16:52:52.997662 IP 172.30.0.123 > 172.30.255.254: ICMP echo request, id 9, seq 7, length 64
+16:52:52.997693 IP 172.30.255.254 > 172.30.0.123: ICMP echo reply, id 9, seq 7, length 64
+16:52:52.998076 IP 172.30.0.123.22 > 172.30.255.254.50710: Flags [P.], seq 577:641, ack 96, win 2003, options [nop,nop,TS val 559586728 ecr 3807674741], length 64
+16:52:52.998095 IP 172.30.255.254.50710 > 172.30.0.123.22: Flags [.], ack 641, win 515, options [nop,nop,TS val 3807675741 ecr 559586728], length 0
+16:52:53.963532 IP 172.30.0.123.54052 > 193.104.37.238.123: NTPv4, Client, length 48
+16:52:53.998107 IP 172.30.0.123 > 172.30.255.254: ICMP echo request, id 9, seq 8, length 64
+16:52:53.998121 IP 172.30.255.254 > 172.30.0.123: ICMP echo reply, id 9, seq 8, length 64
+16:52:53.998456 IP 172.30.0.123.22 > 172.30.255.254.50710: Flags [P.], seq 641:705, ack 96, win 2003, options [nop,nop,TS val 559587729 ecr 3807675741], length 64
+16:52:53.998469 IP 172.30.255.254.50710 > 172.30.0.123.22: Flags [.], ack 705, win 515, options [nop,nop,TS val 3807676741 ecr 559587729], length 0
+16:52:54.051656 IP 193.104.37.238.123 > 172.30.0.123.54052: NTPv4, Server, length 48
+
