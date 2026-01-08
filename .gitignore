@@ -12,3 +12,10 @@
 # VirtualBox appliances
 *.ova
 Vagrantfile
+
+# hidden keys
+*.crt
+*.key
+*.srl
+*.cnf
+*.csr
