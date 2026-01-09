@@ -1,7 +1,165 @@
-# WAZUH indexer install
 
-## WAZUH Indexer
-```
+# SIEM & Endpoint Detection met Wazuh
+
+## Doel van het lab
+
+Het doel van dit lab is het opzetten van een **Security Information and Event Management (SIEM)**-oplossing met **Wazuh**, gecombineerd met **Endpoint Detection & Response (EDR)** en **optioneel netwerkdetectie** via Suricata.
+
+Concreet willen we aantonen dat:
+
+* Endpoint events (process creation, PowerShell commands) correct worden gelogd
+* File Integrity Monitoring (FIM) werkt op Linux
+* Events zichtbaar en analyseerbaar zijn via de Wazuh web interface
+* (Optioneel) Netwerkverkeer kan worden geanalyseerd via pcaps en Suricata
+
+---
+
+## Architectuuroverzicht
+
+**Gebruikte systemen**
+
+* **Wazuh SIEM server** (AlmaLinux)
+
+  * Wazuh Manager
+  * Wazuh Indexer (OpenSearch)
+  * Wazuh Dashboard
+* **Windows client**
+
+  * Windows 10/11
+  * Sysmon + Wazuh Agent
+* **Linux endpoint**
+
+  * AlmaLinux
+  * Wazuh Agent
+* **(Optioneel)** Suricata IDS op SIEM server
+
+**Netwerk**
+
+* Internal company network
+* Agents communiceren via TCP/1514 (events) en TCP/1515 (agent enrollment)
+
+---
+
+## SIEM: Wazuh
+
+Wazuh is een open-source SIEM/XDR-platform dat logcollectie, correlatie, file integrity monitoring, vulnerability detection en compliance monitoring combineert.
+
+De installatie werd uitgevoerd op één server met minimaal **4 GB RAM**, waarbij indexer, manager en dashboard samen draaien.
+
+Na installatie werd bevestigd dat:
+
+* De Wazuh manager actief is
+* De dashboard bereikbaar is via HTTPS
+* Agents succesvol kunnen registreren
+
+---
+
+## Wazuh Agents & Endpoint Detection
+
+### Linux – File Integrity Monitoring (FIM)
+
+Op de AlmaLinux endpoint werd FIM geconfigureerd om de **home directory van een gebruiker** te monitoren.
+
+Bij wijzigingen (aanmaken, aanpassen, verwijderen van bestanden) werden:
+
+* Events gegenereerd
+* Alerts zichtbaar in de Wazuh web interface
+
+Dit toont aan dat ongeautoriseerde wijzigingen op servers gedetecteerd kunnen worden.
+
+---
+
+### Windows – Process & PowerShell Logging
+
+Op de Windows client werd:
+
+* **Sysmon** geïnstalleerd
+* **PowerShell logging** geactiveerd
+* Wazuh agent geconfigureerd om deze logs te verwerken
+
+Hiermee konden we:
+
+* Process creation events zien (bijv. `cmd.exe`, `powershell.exe`)
+* Uitgevoerde PowerShell cmdlets analyseren
+* CLI-activiteiten correleren met mogelijke aanvallen
+
+Een aanvalssimulatie (bv. via mimikatz zoals in de Wazuh blogpost) genereerde detecteerbare alerts.
+
+---
+
+## Threat Hunting & Compliance
+
+### Threat hunting
+
+Via de Wazuh dashboard konden we:
+
+* Uitgevoerde Linux-commando’s bekijken
+  → vooral **root/sudo-commando’s**
+* Windows events analyseren:
+
+  * PowerShell scripts
+  * cmd.exe executies
+
+Dit bevestigt dat Wazuh geschikt is voor post-incident analyse en threat hunting.
+
+---
+
+### Regulatory Compliance
+
+Wazuh ondersteunt meerdere compliance frameworks, waaronder:
+
+* **PCI-DSS**
+* **NIST 800-53**
+* (ook beschikbaar: GDPR, HIPAA, CIS)
+
+Deze frameworks helpen organisaties om audits en regelgeving te ondersteunen.
+
+---
+
+## (Optioneel) Netwerkmonitoring met Suricata
+
+Omdat endpoint detection niet altijd mogelijk is (BYOD), werd netwerkdetectie onderzocht via **Suricata IDS**.
+
+### Aanpak
+
+* Netwerkverkeer vastgelegd met `tcpdump`
+* `.pcap` bestanden gecentraliseerd op de SIEM server
+* Suricata gebruikt in **offline/replay mode**
+* Custom regels aangemaakt:
+
+  * Ping detectie
+  * Hydra attack
+  * DNS verkeer (globaal of per domein)
+
+Alerts verschenen eerst in `fast.log` en daarna ook in de Wazuh interface via `eve.json`.
+
+---
+
+## Conclusie
+
+In dit lab werd succesvol aangetoond dat:
+
+* Wazuh een werkende SIEM/XDR-oplossing is
+* Endpoint detection werkt op zowel Windows als Linux
+* FIM, process logging en PowerShell monitoring correct functioneren
+* (Optioneel) netwerkverkeer kan worden geanalyseerd zonder endpoint agents
+
+Deze setup benadert realistische blue team scenario’s binnen bedrijfsomgevingen.
+
+---
+
+# 2. Stappenplan (technisch)
+
+## Wazuh server
+
+1. AlmaLinux installeren
+2. Systeem updaten
+3. Wazuh all-in-one installatie uitvoeren
+4. Dashboard bereiken via browser
+5. Firewallpoorten openen (1514, 1515, 5601)
+
+###  WAZUH Indexer
+```bash
 [root@siem vagrant]# curl -k -u admin https://172.30.0.20:9200
 Enter host password for user 'admin':
 {
@@ -21,9 +179,8 @@ Enter host password for user 'admin':
   "tagline" : "The OpenSearch Project: https://opensearch.org/"
 }
 ```
-
-## WAZUH Cluster
-```
+### WAZUH Cluster
+```bash
 [root@siem vagrant]# curl -k -u admin https://172.30.0.20:9200/_cat/nodes?v
 Enter host password for user 'admin':
 ip          heap.percent ram.percent cpu load_1m load_5m load_15m node.role node.roles                                        cluster_manager name
@@ -31,7 +188,7 @@ ip          heap.percent ram.percent cpu load_1m load_5m load_15m node.role node
 [root@siem vagrant]#
 ```
 
-## WAZUH server install
+### WAZUH server install
 
 ```bash
  [root@localhost vagrant]# systemctl status wazuh-dashboard
@@ -112,6 +269,43 @@ Jan 07 17:27:43 localhost.localdomain systemd-entrypoint[969]: For complete erro
 
 eset: disabled)
 ``` 
+
+---
+
+## Linux agent (AlmaLinux)
+
+1. Wazuh agent installeren
+2. Agent koppelen aan manager
+3. FIM configureren (`/home/user`)
+4. Agent herstarten
+5. Wijzigingen testen
+
+---
+
+## Windows client
+
+1. Windows VM installeren
+2. Sysmon downloaden en installeren
+3. PowerShell logging activeren
+4. Wazuh agent installeren
+5. Sysmon logs koppelen aan Wazuh
+6. Test met PowerShell & cmd.exe
+
+---
+
+## (Optioneel) Suricata
+
+1. Suricata installeren op SIEM
+2. Tcpdump gebruiken om verkeer te capturen
+3. Pcaps overzetten naar SIEM
+4. Custom Suricata rules schrijven
+5. Pcaps analyseren in offline mode
+6. `eve.json` koppelen aan Wazuh
+
+---
+# WAZUH indexer install
+
+
 
 
 # TODO morgen
